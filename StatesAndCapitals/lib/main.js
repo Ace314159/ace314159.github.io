@@ -15,20 +15,14 @@ function generateColor(str) {
 }
 
 function tapState(p) {
-    alert("State: " + p.id.replace(new RegExp("_", "g"), " ") + "\nCapital: " + p.getAttribute("name").replace(new RegExp("_", "g"), " "));
+    if (action) {
+        alert("State: " + p.id.replace(new RegExp("_", "g"), " ") + "\nCapital: " + p.getAttribute("name").replace(new RegExp("_", "g"), " "));
+    } else {
+        alert("State: " + p.id.replace(new RegExp("_", "g"), " ") + "\nCapital: " + p.getAttribute("name").replace(new RegExp("_", "g"), " "));
+    }
 }
 
 $(document).ready(function() {
-    document.body.style.overflow = "hidden";
-    var width = window.screen.availWidth;
-    var height = window.screen.availHeight;
-    $("#svg").css("height", height + "px");
-    $("#svg").css("width", width + "px");
-    $(window).resize(function() {
-        $("#svg").css("height", height + "px");
-        $("#svg").css("width", width + "px");
-    });
-
     action = window.location.pathname == "/test.html";
     fileName = window.location.search.replace("?", "");
     document.title = fileName.split("_")[0].charAt(0).toUpperCase() + fileName.split("_")[0].slice(1);
@@ -97,7 +91,7 @@ $(document).ready(function() {
                     // Enable pinch and press
                     this.hammer.get('pinch').set({ enable: true })
                     this.hammer.get('press').set({ enable: true })
-                    // Handle double tap
+                        // Handle double tap
                     this.hammer.on('doubletap', function(ev) {
                         instance.zoomIn()
                     })
